@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style></style>
+<body>
+    <h2 align="center">Add Expense</h2>
+    <div class="center-column">
+
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{form.title}}
+            <input class="btn btn-info" type="submit" name="Create Expense">
+        </form>
+                     
+        <div class="todo-list">
+           
+            {% for first in expense_list %}
+            <div class="item-row">
+                
+              
+                <br>    
+                {% if first.name == False %}
+                <p>{{first.name}} ---- {{first.comment}}</p>
+                {% else %}
+                <span>{{first.name}} ---- {{first.comment}}---</span>
+                {% endif %}
+            </div>
+            {% endfor %}
+            
+    </div>
+</body>
+
+</html>

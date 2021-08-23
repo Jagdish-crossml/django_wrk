@@ -1,0 +1,15 @@
+<div>
+    {% for second in category_list %}
+    <div class="item-row">
+        
+      
+        <br>    
+        {% if second.cat_name == False %}
+        <p>{{second.cat_name}} ----{{second.expense}} </p>
+        {% else %}
+        <span>{{second.cat_name}} ----{{second.expense}} </span>
+        {% endif %}
+       
+    </div>
+    {% endfor %}
+</div>
