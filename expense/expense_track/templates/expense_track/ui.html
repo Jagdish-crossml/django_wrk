@@ -1,39 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<style></style>
-<body>
-    <h2 align="center">Add Expense</h2>
-    <div class="center-column">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <style>
+    .center-column{
+        background-color:ivory;
+        
+    }
+    .expense-list{
+        background-color:white;
+        width: 400px;
+        margin-top: 50px;
+        margin-left: 400px;
+    }
+    
 
-        <form method="POST" action="">
-            {% csrf_token %}
-            {{form.title}}
-            <input class="btn btn-info" type="submit" name="Create Expense">
-        </form>
-                     
-        <div class="todo-list">
-           
-            {% for first in expense_list %}
-            <div class="item-row">
-                
-              
-                <br>    
-                {% if first.name == False %}
-                <p>{{first.name}} ---- {{first.comment}}</p>
-                {% else %}
-                <span>{{first.name}} ---- {{first.comment}}---</span>
-                {% endif %}
-            </div>
-            {% endfor %}
+</style>
+    <body>
+        <h2 align="center">Add Expense</h2>
+        <div class="center-column">
+
+            <form method="POST" action="">
+                {% csrf_token %}
+                {{form}}
+                <input class="btn btn-info" type="submit" name="Create Expense">
+            </form>
             
-    </div>
-</body>
 
-</html>
+            <div class="expense-list">
+
+                {% for first in expense_list %}
+                <div class="item-row">
+                    {% if first.name == False %}
+                    <p>{{first.name}} ---- {{first.comment}}--{{first.date}}</p>
+                    {% else %}
+                    <table>
+                        <tr><td>{{first.name}}</td>
+                            <td>{{first.comment}}</td>
+                            <td>{{first.date}}</td>
+                            <td>{{first.category}}</td></tr>
+                    </table>
+                    {% endif %}
+                    <br>
+
+                </div>
+                {% endfor %}
+
+            </div>
+            <a href="prevMonth/">Click to view last month expenses</a>
+            <br><br>
+            <a href="thismonth/">Click to view current month expenses</a>
+            <br><br>
+            <a href="yearly/">Click to view yearly expenses</a>
+        </body>
+
+    </html>

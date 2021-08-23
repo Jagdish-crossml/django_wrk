@@ -1,6 +1,6 @@
-<h4> Money spent in year of {{year}} </h4>
+<h4> Money spent in month of {{this_month}} </h4>
 <div>
-    {% for expense in is_expenses %}
+    {% for expense in this_expenses %}
     <table>
         <tr><td>{{expense.name}}</td>
             <td>{{expense.comment}}</td>
@@ -9,4 +9,4 @@
     </table>
     {% endfor %}
     </div>
-    <a href="/expense_track/">Back</a><br><br>  
+    <a href="/expense_track/">Back</a><br><br>   

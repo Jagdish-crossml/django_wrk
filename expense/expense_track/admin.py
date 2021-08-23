@@ -5,4 +5,3 @@ from .models import *
 
 admin.site.register(Expense)
 
-admin.site.register(Category)
