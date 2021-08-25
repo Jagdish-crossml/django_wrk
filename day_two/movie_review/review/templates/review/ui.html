@@ -1,0 +1,8 @@
+<body>
+    {{ movies }}
+<form method="POST">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" name="submit" value="POST">
+</form>
+</body>
