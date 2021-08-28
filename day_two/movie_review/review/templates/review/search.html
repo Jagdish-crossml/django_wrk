@@ -7,10 +7,10 @@
 
 {% for que in queryset %}
 <div>
-<span>{{ que.name }}</span>
+<span>{{ que.name }}---{{ que.release_date }}---{{ que.genre }}-----{{que.artists}}</span>
 </div>
 {% endfor %}
-
+<a href="/review">Back</a>
 
  <!-- <input  id="search_box" type="text" name="search_box"  placeholder="Search...">
     <button id="search_submit" type="submit" >Submit</button> -->

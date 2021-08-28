@@ -14,4 +14,15 @@ class AwardForm(ModelForm):
 class ArtistForm(ModelForm):
     class Meta:
         model = Artist
-        fields = '__all__'        
+        fields = '__all__'
+
+class RatingForm(ModelForm):
+   class Meta:
+     model = Rating
+     exclude = ['votes']
+
+class SearchForm(ModelForm):
+   class Meta:
+     model = Movie
+     fields = [ 'name']     
+

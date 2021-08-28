@@ -25,7 +25,7 @@ class Movie(models.Model):
     name = models.CharField(max_length=50)
     genre = models.CharField(max_length=50)
     release_date = models.DateTimeField()
-    avg_rating = models.DecimalField(max_digits=4,decimal_places=2)
+    avg_rating = models.DecimalField(max_digits=4,decimal_places=2,default='0')
     language = models.CharField(max_length=50)
     length = models.DecimalField(max_digits=4,decimal_places=2)
     artists = models.ManyToManyField(Artist) 
@@ -52,4 +52,4 @@ class Rating(models.Model):
     movie = models.ForeignKey(Movie,on_delete=models.CASCADE)
     votes = models.IntegerField(default='0')
     def __str__(self):
-        return self.movie_rating 
+        return self.movie_rating ,self.movie
