@@ -1,0 +1,68 @@
+{% extends 'registration/base.html' %}
+
+{% block content %}
+<style>
+.table{
+    background-color: whitesmoke;
+    margin-left: 200px;
+    border-collapse: collapse;
+    border: 1px solid lightgray;
+}
+th,td{
+    padding: 20px;
+}
+form{
+    width: 200px;
+}    
+</style>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" href= "/index/" style="margin-top:10px;padding: 7px;background-color: lightgray;border-style: hidden;">UPLOAD</button>
+  </form>
+  <a href="date_sort/" style="margin-top: 18px;margin-right: 30px; background-color: lightgray;color: red;padding: 1em 1.5em;text-decoration: none;text-transform: uppercase;float: right;" >search by date</a><br>
+  <a href="search_doc/" style="margin-right: 30px;background-color: lightgray;color: red;padding: 1em 1.5em;text-decoration: none;text-transform: uppercase;float: right;" >search docs</a><br>
+  
+  {% if messages %}
+  {% for message in messages %}
+
+      {% if message.tags == 'info' %}
+      <div class="alert alert-warning" role="alert">
+        {{message}}
+      </div>
+      {% endif %}
+      {% endfor %}
+	{% endif %}
+  <p><a href="{% url 'home' %}">Return to home</a></p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Doc name</th>
+        <th scope="col">Datetime</th>
+        <th scope="col">File Type</th>
+        <th scope="col">UserName</th>
+        <th scope="col">Download Options</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for uploads in docs %}
+      <tr>
+            <th scope="row"> {{forloop.counter}}</th>
+          <td>{{ uploads.name }}</td>
+          <td>{{ uploads.created_at }}</td>
+          <td>{{ uploads.PDF }}</td>
+          <td>{{ uploads.user }}</td>
+          <td><a href="{{ uploads.PDF.url }}" class="btn btn-primary" target="_blank">Download</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
+  
+  
+  
+
+
+  {% endblock %}
+
