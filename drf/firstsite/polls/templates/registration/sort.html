@@ -1,0 +1,49 @@
+{% extends 'registration/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<p align="centre">Today user uploaded {{ daily }} docs</p><br>
+
+<p align="centre">This month user uploaded {{ monthly }} docs</p><br>
+<p align="centre">This year user uploaded {{ yearly }} docs</p><br>
+
+
+<form style="float: right;">
+    <label for="month">Search by Month</label>
+    <input type="text" id="month" placeholder="Search By Month" name="month">
+    <button  class="btn btn-outline-primary" type="submit">Search</button>
+</form>
+<br><br>
+<form >
+    <label for="year">Year</label>
+    <input type="text" id="year" placeholder="Search By Year" name="year">
+    <button class="btn btn-outline-primary" type="submit">Search</button>
+</form>
+{% if pdf_list %}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Doc name</th>
+            <th scope="col">Datetime</th>
+            <th scope="col">File Type</th>
+            <th scope="col">UserName</th>
+            <th scope="col">Download Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for uploads in pdf_list %}
+        <tr>
+            <th scope="row"> {{forloop.counter}}</th>
+            <td>{{ uploads.name }}</td>
+            <td>{{ uploads.date }}</td>
+            <td>{{ uploads.PDF }}</td>
+            <td>{{ uploads.user }}</td>
+            <td><a href="{{ uploads.PDF.url }}" class="btn btn-outline-info"
+                    target="_blank">Download</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+<p><a class="navbar-brand"   href="{% url 'index' %}">Return to home</a></p><br><br>
+{% endblock %}

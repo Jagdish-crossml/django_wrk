@@ -1,0 +1,49 @@
+{% extends 'registration/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+    /* .table{
+    background-color: whitesmoke;
+    margin-left: 200px;
+    border-collapse: collapse;
+    border: 1px solid lightgray;
+}
+th,td{
+    padding: 20px;
+} */
+</style>
+<form method="POST"  style="margin: 0">
+   {% csrf_token %}
+   {{ form|crispy }}
+   <br>
+   <input class="btn btn-success" type="submit" value='Search'/>
+   <br><br>
+</form>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Doc name</th>
+        <th scope="col">Datetime</th>
+        <th scope="col">File Type</th>
+        <th scope="col">UserName</th>
+        <th scope="col">Download Options</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for uploads in queryset %}
+      <tr>
+            <th scope="row"> {{forloop.counter}}</th>
+          <td>{{ uploads.name }}</td>
+          <td>{{ uploads.date }}</td>
+          <td>{{ uploads.PDF }}</td>
+          <td>{{ uploads.user }}</td>
+          <td><a href="{{ uploads.PDF.url }}" class="btn btn-outline-info"target="_blank">Download</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+<p><a class="btn btn-success" href="{% url 'index' %}">Return to home</a></p>
+
+{% endblock %}
